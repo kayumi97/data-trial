@@ -1,0 +1,12 @@
+apache-airflow-providers-apache-kafka
+kafka-python
+pyspark
+pyhive
+psycopg2-binary
+celery
+redis
+requests
+pandas
+pyarrow
+fastparquet
+great_expectations

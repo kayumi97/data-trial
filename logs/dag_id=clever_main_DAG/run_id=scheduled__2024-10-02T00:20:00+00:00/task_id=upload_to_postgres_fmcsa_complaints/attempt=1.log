@@ -1,0 +1,38 @@
+[2024-10-03T18:36:33.326+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: clever_main_DAG.upload_to_postgres_fmcsa_complaints scheduled__2024-10-02T00:20:00+00:00 [queued]>
+[2024-10-03T18:36:33.332+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: clever_main_DAG.upload_to_postgres_fmcsa_complaints scheduled__2024-10-02T00:20:00+00:00 [queued]>
+[2024-10-03T18:36:33.332+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2024-10-03T18:36:33.339+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): upload_to_postgres_fmcsa_complaints> on 2024-10-02 00:20:00+00:00
+[2024-10-03T18:36:33.342+0000] {standard_task_runner.py:57} INFO - Started process 111 to run task
+[2024-10-03T18:36:33.346+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'clever_main_DAG', 'upload_to_postgres_fmcsa_complaints', 'scheduled__2024-10-02T00:20:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/clever_main_DAG.py', '--cfg-path', '/tmp/tmpy88jekow']
+[2024-10-03T18:36:33.347+0000] {standard_task_runner.py:85} INFO - Job 5: Subtask upload_to_postgres_fmcsa_complaints
+[2024-10-03T18:36:33.378+0000] {task_command.py:410} INFO - Running <TaskInstance: clever_main_DAG.upload_to_postgres_fmcsa_complaints scheduled__2024-10-02T00:20:00+00:00 [running]> on host 0ed64f12ba94
+[2024-10-03T18:36:33.423+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='alec.ventura' AIRFLOW_CTX_DAG_ID='clever_main_DAG' AIRFLOW_CTX_TASK_ID='upload_to_postgres_fmcsa_complaints' AIRFLOW_CTX_EXECUTION_DATE='2024-10-02T00:20:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-10-02T00:20:00+00:00'
+[2024-10-03T18:36:33.426+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/scripts/clever_main_pipeline.py", line 6, in upload_to_postgres
+    f'../../data_examples/{file_name}'
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 586, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 482, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 811, in __init__
+    self._engine = self._make_engine(self.engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 1040, in _make_engine
+    return mapping[engine](self.f, **self.options)  # type: ignore[call-arg]
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 51, in __init__
+    self._open_handles(src, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py", line 229, in _open_handles
+    errors=kwds.get("encoding_errors", "strict"),
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 707, in get_handle
+    newline="",
+FileNotFoundError: [Errno 2] No such file or directory: '../../data_examples/fmcsa_complaints.csv'
+[2024-10-03T18:36:33.432+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=clever_main_DAG, task_id=upload_to_postgres_fmcsa_complaints, execution_date=20241002T002000, start_date=20241003T183633, end_date=20241003T183633
+[2024-10-03T18:36:33.438+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 5 for task upload_to_postgres_fmcsa_complaints ([Errno 2] No such file or directory: '../../data_examples/fmcsa_complaints.csv'; 111)
+[2024-10-03T18:36:33.446+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-10-03T18:36:33.463+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

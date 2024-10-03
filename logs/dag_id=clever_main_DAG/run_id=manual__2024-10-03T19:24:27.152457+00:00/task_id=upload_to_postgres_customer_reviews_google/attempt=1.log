@@ -1,0 +1,49 @@
+[2024-10-03T19:24:30.273+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: clever_main_DAG.upload_to_postgres_customer_reviews_google manual__2024-10-03T19:24:27.152457+00:00 [queued]>
+[2024-10-03T19:24:30.289+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: clever_main_DAG.upload_to_postgres_customer_reviews_google manual__2024-10-03T19:24:27.152457+00:00 [queued]>
+[2024-10-03T19:24:30.291+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 1
+[2024-10-03T19:24:30.315+0000] {taskinstance.py:1327} INFO - Executing <Task(PythonOperator): upload_to_postgres_customer_reviews_google> on 2024-10-03 19:24:27.152457+00:00
+[2024-10-03T19:24:30.322+0000] {standard_task_runner.py:57} INFO - Started process 1008 to run task
+[2024-10-03T19:24:30.333+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'clever_main_DAG', 'upload_to_postgres_customer_reviews_google', 'manual__2024-10-03T19:24:27.152457+00:00', '--job-id', '19', '--raw', '--subdir', 'DAGS_FOLDER/clever_main_DAG.py', '--cfg-path', '/tmp/tmpcucdmm75']
+[2024-10-03T19:24:30.341+0000] {standard_task_runner.py:85} INFO - Job 19: Subtask upload_to_postgres_customer_reviews_google
+[2024-10-03T19:24:30.465+0000] {task_command.py:410} INFO - Running <TaskInstance: clever_main_DAG.upload_to_postgres_customer_reviews_google manual__2024-10-03T19:24:27.152457+00:00 [running]> on host 0ed64f12ba94
+[2024-10-03T19:24:30.615+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='alec.ventura' AIRFLOW_CTX_DAG_ID='clever_main_DAG' AIRFLOW_CTX_TASK_ID='upload_to_postgres_customer_reviews_google' AIRFLOW_CTX_EXECUTION_DATE='2024-10-03T19:24:27.152457+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-03T19:24:27.152457+00:00'
+[2024-10-03T19:24:30.621+0000] {timeout.py:68} ERROR - Process timed out, PID: 1008
+[2024-10-03T19:24:30.637+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 181, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 198, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/scripts/clever_main_pipeline.py", line 10, in upload_to_postgres
+    f'dags/scripts/data_examples/{file_name}'
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/util/_decorators.py", line 311, in wrapper
+    return func(*args, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 586, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 482, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 811, in __init__
+    self._engine = self._make_engine(self.engine)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/readers.py", line 1040, in _make_engine
+    return mapping[engine](self.f, **self.options)  # type: ignore[call-arg]
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/c_parser_wrapper.py", line 51, in __init__
+    self._open_handles(src, kwds)
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/parsers/base_parser.py", line 229, in _open_handles
+    errors=kwds.get("encoding_errors", "strict"),
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 585, in get_handle
+    if _is_binary_mode(path_or_buf, mode) and "b" not in mode:
+  File "/home/airflow/.local/lib/python3.7/site-packages/pandas/io/common.py", line 962, in _is_binary_mode
+    return isinstance(handle, binary_classes) or "b" in getattr(handle, "mode", mode)
+  File "/usr/local/lib/python3.7/abc.py", line 139, in __instancecheck__
+    return _abc_instancecheck(cls, instance)
+  File "/usr/local/lib/python3.7/abc.py", line 143, in __subclasscheck__
+    return _abc_subclasscheck(cls, subclass)
+  File "/usr/local/lib/python3.7/abc.py", line 141, in __subclasscheck__
+    def __subclasscheck__(cls, subclass):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/timeout.py", line 69, in handle_timeout
+    raise AirflowTaskTimeout(self.error_message)
+airflow.exceptions.AirflowTaskTimeout: Timeout, PID: 1008
+[2024-10-03T19:24:30.666+0000] {taskinstance.py:1350} INFO - Marking task as FAILED. dag_id=clever_main_DAG, task_id=upload_to_postgres_customer_reviews_google, execution_date=20241003T192427, start_date=20241003T192430, end_date=20241003T192430
+[2024-10-03T19:24:30.692+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 19 for task upload_to_postgres_customer_reviews_google (Timeout, PID: 1008; 1008)
+[2024-10-03T19:24:30.722+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2024-10-03T19:24:30.751+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
